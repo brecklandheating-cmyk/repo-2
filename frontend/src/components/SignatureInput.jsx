@@ -19,13 +19,23 @@ const SignatureInput = ({ value, onChange }) => {
   }, [value]);
   
   const startDrawing = (e) => {
+    e.preventDefault();
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const rect = canvas.getBoundingClientRect();
     const ctx = canvas.getContext('2d');
     
+    let x, y;
+    if (e.type === 'touchstart') {
+      x = e.touches[0].clientX - rect.left;
+      y = e.touches[0].clientY - rect.top;
+    } else {
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+    }
+    
     ctx.beginPath();
-    const x = (e.clientX || e.touches[0].clientX) - rect.left;
-    const y = (e.clientY || e.touches[0].clientY) - rect.top;
     ctx.moveTo(x, y);
     setIsDrawing(true);
   };
@@ -35,11 +45,19 @@ const SignatureInput = ({ value, onChange }) => {
     
     e.preventDefault();
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const rect = canvas.getBoundingClientRect();
     const ctx = canvas.getContext('2d');
     
-    const x = (e.clientX || e.touches[0].clientX) - rect.left;
-    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+    let x, y;
+    if (e.type === 'touchmove') {
+      x = e.touches[0].clientX - rect.left;
+      y = e.touches[0].clientY - rect.top;
+    } else {
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+    }
     
     ctx.lineTo(x, y);
     ctx.strokeStyle = '#000';
@@ -50,8 +68,9 @@ const SignatureInput = ({ value, onChange }) => {
     setHasSignature(true);
   };
   
-  const stopDrawing = () => {
+  const stopDrawing = (e) => {
     if (isDrawing) {
+      if (e) e.preventDefault();
       setIsDrawing(false);
       saveSignature();
     }

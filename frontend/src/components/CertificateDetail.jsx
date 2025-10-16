@@ -105,11 +105,49 @@ const CertificateDetail = () => {
       </div>
       
       <Card className="print:shadow-none print:border-2 print:border-gray-800">
-        <CardHeader className="bg-blue-600 text-white print:bg-blue-600 print:py-3">
+        {/* Company Header */}
+        <div className="border-b-4 border-yellow-400 bg-white p-4 print:p-3">
+          <div className="flex items-center gap-6">
+            {/* Company Logo */}
+            <div className="flex-shrink-0">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_cp12-certificates/artifacts/cpbv5n2m_image.png" 
+                alt="Breckland Heating Ltd Logo" 
+                className="h-24 w-auto print:h-20"
+              />
+            </div>
+            
+            {/* Company Details */}
+            <div className="flex-1 text-sm print:text-xs">
+              <h2 className="text-xl font-bold mb-2 print:text-lg print:mb-1">Breckland Heating Ltd</h2>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-gray-700">
+                <div>
+                  <p>32 Paynes Lane, Feltwell</p>
+                  <p>Norfolk. IP26 4BA</p>
+                </div>
+                <div>
+                  <p><strong>Tel:</strong> 01842 879585</p>
+                  <p><strong>Mobile:</strong> 07515 528786</p>
+                </div>
+                <div>
+                  <p><strong>Email:</strong> brecklandheating@gmail.com</p>
+                </div>
+                <div>
+                  <p><strong>Web:</strong> brecklandheatinglimited.co.uk</p>
+                </div>
+                <div className="col-span-2">
+                  <p className="font-semibold text-blue-900"><strong>Gas Safe Registration No:</strong> 221207</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <CardHeader className="bg-blue-600 text-white print:bg-blue-600 print:py-2">
           <div className="text-center">
-            <CardTitle className="text-2xl mb-1">CP12 Gas Safety Certificate</CardTitle>
-            <p className="text-base">Landlord Gas Safety Record</p>
-            <p className="text-sm mt-1">Serial Number: <span className="font-bold text-lg">{certificate.serial_number}</span></p>
+            <CardTitle className="text-2xl mb-1 print:text-xl print:mb-0">CP12 Gas Safety Certificate</CardTitle>
+            <p className="text-base print:text-sm">Landlord Gas Safety Record</p>
+            <p className="text-sm mt-1 print:text-xs print:mt-0">Serial Number: <span className="font-bold text-lg print:text-base">{certificate.serial_number}</span></p>
           </div>
         </CardHeader>
         

@@ -215,14 +215,10 @@ const CertificateForm = ({ editMode = false }) => {
                   <p><strong>Tel:</strong> 01842 879585</p>
                   <p><strong>Mobile:</strong> 07515 528786</p>
                 </div>
-                <div>
-                  <p><strong>Email:</strong> brecklandheating@gmail.com</p>
-                </div>
-                <div>
-                  <p><strong>Web:</strong> brecklandheatinglimited.co.uk</p>
-                </div>
                 <div className="col-span-2">
-                  <p className="font-semibold text-blue-900"><strong>Gas Safe Registration No:</strong> 221207</p>
+                  <p><strong>Email:</strong> brecklandheating@gmail.com</p>
+                  <p><strong>Web:</strong> brecklandheatinglimited.co.uk</p>
+                  <p className="font-semibold text-blue-900 mt-1"><strong>Gas Safe Registration No:</strong> 221207</p>
                 </div>
               </div>
             </div>

@@ -13,8 +13,9 @@ import axios from 'axios';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const CertificateForm = ({ editMode = false, certificateId = null }) => {
+const CertificateForm = ({ editMode = false }) => {
   const navigate = useNavigate();
+  const { id: certificateId } = useParams();
   const [loading, setLoading] = useState(false);
   const [serialNumber, setSerialNumber] = useState('');
   

@@ -80,7 +80,7 @@ const CertificateDetail = () => {
   }
   
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
+    <div className="container mx-auto px-4 py-8 max-w-[1200px]">
       <div className="mb-6 flex gap-2 print:hidden">
         <Button
           variant="outline"
@@ -104,173 +104,187 @@ const CertificateDetail = () => {
         </Button>
       </div>
       
-      <Card className="print:shadow-none">
-        <CardHeader className="bg-blue-600 text-white print:bg-blue-600">
+      <Card className="print:shadow-none print:border-2 print:border-gray-800">
+        <CardHeader className="bg-blue-600 text-white print:bg-blue-600 print:py-3">
           <div className="text-center">
-            <CardTitle className="text-3xl mb-2">CP12 Gas Safety Certificate</CardTitle>
-            <p className="text-lg">Landlord Gas Safety Record</p>
-            <p className="text-sm mt-2">Serial Number: <span className="font-bold text-xl">{certificate.serial_number}</span></p>
+            <CardTitle className="text-2xl mb-1">CP12 Gas Safety Certificate</CardTitle>
+            <p className="text-base">Landlord Gas Safety Record</p>
+            <p className="text-sm mt-1">Serial Number: <span className="font-bold text-lg">{certificate.serial_number}</span></p>
           </div>
         </CardHeader>
         
-        <CardContent className="p-8 space-y-6">
-          {/* Property Details */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-blue-900">Property Details</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-gray-600">Property Address</p>
-                <p className="font-semibold" data-testid="detail-property-address">{certificate.property_address}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Landlord Name</p>
-                <p className="font-semibold" data-testid="detail-landlord-name">{certificate.landlord_name}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Landlord Contact</p>
-                <p className="font-semibold" data-testid="detail-landlord-contact">{certificate.landlord_contact}</p>
-              </div>
-            </div>
-          </div>
-          
-          <Separator />
-          
-          {/* Engineer Details */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-blue-900">Engineer Details</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-gray-600">Engineer Name</p>
-                <p className="font-semibold" data-testid="detail-engineer-name">{certificate.engineer_name}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Gas Safe ID</p>
-                <p className="font-semibold" data-testid="detail-gas-safe-id">{certificate.gas_safe_id}</p>
-              </div>
-            </div>
-            {certificate.engineer_signature && (
-              <div className="mt-4">
-                <p className="text-sm text-gray-600 mb-2">Engineer Signature</p>
-                <div className="border border-gray-300 p-2 inline-block rounded">
-                  <img
-                    src={certificate.engineer_signature}
-                    alt="Engineer Signature"
-                    className="max-h-24"
-                    data-testid="detail-engineer-signature"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-          
-          <Separator />
-          
-          {/* Inspection Dates */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-blue-900">Inspection Details</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-gray-600">Inspection Date</p>
-                <p className="font-semibold" data-testid="detail-inspection-date">{formatDate(certificate.inspection_date)}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Next Inspection Due</p>
-                <p className="font-semibold" data-testid="detail-next-inspection-due">{formatDate(certificate.next_inspection_due)}</p>
-              </div>
-            </div>
-          </div>
-          
-          <Separator />
-          
-          {/* Appliances */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-blue-900">Gas Appliances Inspected</h3>
-            <div className="space-y-4">
-              {certificate.appliances.map((appliance, index) => (
-                <Card key={index} className="p-4 bg-gray-50">
-                  <div className="grid md:grid-cols-4 gap-4">
+        <CardContent className="p-6 print:p-4">
+          {/* Two Column Layout */}
+          <div className="grid md:grid-cols-2 gap-6 print:gap-4">
+            {/* Left Column */}
+            <div className="space-y-4 print:space-y-3">
+              {/* Property Details */}
+              <div className="border-b pb-3 print:pb-2">
+                <h3 className="text-base font-bold mb-2 text-blue-900">Property Details</h3>
+                <div className="space-y-2 print:space-y-1 text-sm">
+                  <div>
+                    <p className="text-xs text-gray-600">Property Address</p>
+                    <p className="font-semibold" data-testid="detail-property-address">{certificate.property_address}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <p className="text-sm text-gray-600">Type</p>
-                      <p className="font-semibold">{appliance.type}</p>
+                      <p className="text-xs text-gray-600">Landlord</p>
+                      <p className="font-semibold" data-testid="detail-landlord-name">{certificate.landlord_name}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Location</p>
-                      <p className="font-semibold">{appliance.location}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Make/Model</p>
-                      <p className="font-semibold">{appliance.make_model}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Condition</p>
-                      <div>{getConditionBadge(appliance.condition)}</div>
+                      <p className="text-xs text-gray-600">Contact</p>
+                      <p className="font-semibold" data-testid="detail-landlord-contact">{certificate.landlord_contact}</p>
                     </div>
                   </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-          
-          <Separator />
-          
-          {/* Safety Checks */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-blue-900">Safety Checks</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Gas Tightness Test</span>
-                <span className="font-semibold" data-testid="detail-gas-tightness">{certificate.safety_checks.gas_tightness}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Flue Condition</span>
-                <span className="font-semibold" data-testid="detail-flue-condition">{certificate.safety_checks.flue_condition}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Ventilation</span>
-                <span className="font-semibold" data-testid="detail-ventilation">{certificate.safety_checks.ventilation}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Gas Pressure</span>
-                <span className="font-semibold" data-testid="detail-gas-pressure">{certificate.safety_checks.gas_pressure}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Burner Operation</span>
-                <span className="font-semibold" data-testid="detail-burner-operation">{certificate.safety_checks.burner_operation}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm">Safety Devices</span>
-                <span className="font-semibold" data-testid="detail-safety-devices">{certificate.safety_checks.safety_devices}</span>
-              </div>
-            </div>
-          </div>
-          
-          {certificate.defects_actions && (
-            <>
-              <Separator />
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-blue-900">Defects/Actions Required</h3>
-                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded">
-                  <p className="whitespace-pre-wrap" data-testid="detail-defects-actions">{certificate.defects_actions}</p>
                 </div>
               </div>
-            </>
-          )}
-          
-          <Separator />
-          
-          {/* Compliance Statement */}
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded">
-            <h3 className="font-bold mb-2 text-blue-900">Compliance Statement</h3>
-            <p className="text-sm">{certificate.compliance_statement}</p>
-          </div>
-          
-          {/* Footer */}
-          <div className="text-center text-sm text-gray-500 mt-8 pt-4 border-t">
-            <p>This certificate complies with the Gas Safety (Installation and Use) Regulations 1998</p>
-            <p className="mt-2">Certificate issued: {formatDate(certificate.created_at)}</p>
+              
+              {/* Engineer Details */}
+              <div className="border-b pb-3 print:pb-2">
+                <h3 className="text-base font-bold mb-2 text-blue-900">Engineer Details</h3>
+                <div className="space-y-2 print:space-y-1 text-sm">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <p className="text-xs text-gray-600">Engineer</p>
+                      <p className="font-semibold" data-testid="detail-engineer-name">{certificate.engineer_name}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-600">Gas Safe ID</p>
+                      <p className="font-semibold" data-testid="detail-gas-safe-id">{certificate.gas_safe_id}</p>
+                    </div>
+                  </div>
+                  {certificate.engineer_signature && (
+                    <div>
+                      <p className="text-xs text-gray-600 mb-1">Signature</p>
+                      <div className="border border-gray-300 p-1 inline-block rounded">
+                        <img
+                          src={certificate.engineer_signature}
+                          alt="Engineer Signature"
+                          className="max-h-12 print:max-h-10"
+                          data-testid="detail-engineer-signature"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Inspection Dates */}
+              <div className="border-b pb-3 print:pb-2">
+                <h3 className="text-base font-bold mb-2 text-blue-900">Inspection Details</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <p className="text-xs text-gray-600">Inspection Date</p>
+                    <p className="font-semibold" data-testid="detail-inspection-date">{formatDate(certificate.inspection_date)}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Next Due</p>
+                    <p className="font-semibold" data-testid="detail-next-inspection-due">{formatDate(certificate.next_inspection_due)}</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Safety Checks */}
+              <div>
+                <h3 className="text-base font-bold mb-2 text-blue-900">Safety Checks</h3>
+                <div className="space-y-1 text-xs">
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Gas Tightness Test</span>
+                    <span className="font-semibold" data-testid="detail-gas-tightness">{certificate.safety_checks.gas_tightness}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Flue Condition</span>
+                    <span className="font-semibold" data-testid="detail-flue-condition">{certificate.safety_checks.flue_condition}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Ventilation</span>
+                    <span className="font-semibold" data-testid="detail-ventilation">{certificate.safety_checks.ventilation}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Gas Pressure</span>
+                    <span className="font-semibold" data-testid="detail-gas-pressure">{certificate.safety_checks.gas_pressure}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Burner Operation</span>
+                    <span className="font-semibold" data-testid="detail-burner-operation">{certificate.safety_checks.burner_operation}</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-gray-50 rounded">
+                    <span>Safety Devices</span>
+                    <span className="font-semibold" data-testid="detail-safety-devices">{certificate.safety_checks.safety_devices}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Column */}
+            <div className="space-y-4 print:space-y-3">
+              {/* Appliances */}
+              <div>
+                <h3 className="text-base font-bold mb-2 text-blue-900">Gas Appliances Inspected</h3>
+                <div className="space-y-2 print:space-y-1.5">
+                  {certificate.appliances.map((appliance, index) => (
+                    <div key={index} className="p-2 bg-gray-50 rounded border border-gray-200 text-xs">
+                      <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                        <div>
+                          <span className="text-gray-600">Type:</span>
+                          <span className="font-semibold ml-1">{appliance.type}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">Location:</span>
+                          <span className="font-semibold ml-1">{appliance.location}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">Make/Model:</span>
+                          <span className="font-semibold ml-1">{appliance.make_model}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-600">Condition:</span>
+                          <span className="ml-1">{getConditionBadge(appliance.condition)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Defects/Actions */}
+              {certificate.defects_actions && (
+                <div>
+                  <h3 className="text-base font-bold mb-2 text-blue-900">Defects/Actions Required</h3>
+                  <div className="p-2 bg-yellow-50 border border-yellow-200 rounded text-xs">
+                    <p className="whitespace-pre-wrap" data-testid="detail-defects-actions">{certificate.defects_actions}</p>
+                  </div>
+                </div>
+              )}
+              
+              {/* Compliance Statement */}
+              <div className="bg-blue-50 border border-blue-200 p-2 rounded">
+                <h3 className="text-sm font-bold mb-1 text-blue-900">Compliance Statement</h3>
+                <p className="text-xs">{certificate.compliance_statement}</p>
+              </div>
+              
+              {/* Footer */}
+              <div className="text-center text-xs text-gray-500 pt-2 border-t">
+                <p>This certificate complies with the Gas Safety (Installation and Use) Regulations 1998</p>
+                <p className="mt-1">Certificate issued: {formatDate(certificate.created_at)}</p>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
+      
+      <style jsx>{`
+        @media print {
+          @page {
+            size: A4;
+            margin: 10mm;
+          }
+          body {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
+        }
+      `}</style>
     </div>
   );
 };

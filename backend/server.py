@@ -193,7 +193,7 @@ class ApplianceCheck(BaseModel):
 class GasSafetyCertificate(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    certificate_type: str  # CP12, CD11, GWN, CD10, TI133D
+    certificate_type: str  # CP12, CD11, CD10, TI133D, BENCHMARK
     certificate_number: str
     # Landlord/Customer details
     landlord_customer_name: str

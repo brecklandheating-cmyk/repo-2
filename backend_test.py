@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timedelta
 
 class BrecklandHeatingAPITester:
-    def __init__(self, base_url="https://heat-service-app.preview.emergentagent.com"):
+    def __init__(self, base_url="https://unified-repos.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.admin_token = None
@@ -18,6 +18,7 @@ class BrecklandHeatingAPITester:
         self.test_service_id = None
         self.test_invoice_id = None
         self.test_estimate_id = None
+        self.test_certificate_id = None
 
     def log_test(self, name, success, details=""):
         """Log test result"""

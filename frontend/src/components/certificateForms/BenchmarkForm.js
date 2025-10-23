@@ -324,14 +324,29 @@ const BenchmarkForm = () => {
                   />
                 </div>
                 <div>
-                  <Label>Burner Pressure (mbar) *</Label>
-                  <Input
-                    type="number"
-                    step="0.1"
-                    value={formData.burner_gas_pressure}
-                    onChange={(e) => handleChange('burner_gas_pressure', e.target.value)}
-                    required
-                  />
+                  <Label>Burner Pressure (mbar)</Label>
+                  <div className="flex gap-2 items-center">
+                    <Input
+                      type="number"
+                      step="0.1"
+                      value={formData.burner_gas_pressure}
+                      onChange={(e) => handleChange('burner_gas_pressure', e.target.value)}
+                      disabled={formData.burner_pressure_na}
+                      required={!formData.burner_pressure_na}
+                    />
+                    <div className="flex items-center space-x-2 whitespace-nowrap">
+                      <Checkbox
+                        id="burner_pressure_na"
+                        checked={formData.burner_pressure_na}
+                        onCheckedChange={(checked) => {
+                          handleChange('burner_pressure_na', checked);
+                          if (checked) handleChange('burner_gas_pressure', '');
+                        }}
+                      />
+                      <Label htmlFor="burner_pressure_na" className="text-xs cursor-pointer">N/A</Label>
+                    </div>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">Check N/A if not applicable for this boiler</p>
                 </div>
               </div>
 

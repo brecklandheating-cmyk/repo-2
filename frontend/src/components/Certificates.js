@@ -930,17 +930,19 @@ const Certificates = () => {
                     <p className="font-semibold">Inspection Date:</p>
                     <p>{new Date(selectedCertificate.inspection_date).toLocaleDateString()}</p>
                   </div>
-                  <div>
-                    <p className="font-semibold">Next Inspection Due By:</p>
-                    <p>{new Date(selectedCertificate.next_inspection_due).toLocaleDateString()}</p>
-                  </div>
+                  {selectedCertificate.next_inspection_due && (
+                    <div>
+                      <p className="font-semibold">Next Inspection Due By:</p>
+                      <p>{new Date(selectedCertificate.next_inspection_due).toLocaleDateString()}</p>
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold">Engineer Name:</p>
                     <p>{selectedCertificate.engineer_name}</p>
                   </div>
                   <div>
-                    <p className="font-semibold">Gas Safe Registration:</p>
-                    <p>{selectedCertificate.gas_safe_number}</p>
+                    <p className="font-semibold">{selectedCertificate.gas_safe_number ? 'Gas Safe' : 'OFTEC'} Registration:</p>
+                    <p>{selectedCertificate.gas_safe_number || selectedCertificate.oftec_number}</p>
                   </div>
                   {selectedCertificate.responsible_person_signature && (
                     <div>

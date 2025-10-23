@@ -207,6 +207,7 @@ const CD10Form = () => {
                   rows={2}
                 />
               </div>
+            </div>
             </CardContent>
           </Card>
 

@@ -84,24 +84,25 @@ class BrecklandHeatingEdgeCaseTests:
 
     def test_duplicate_user_registration(self):
         """Test registering user with existing email"""
+        timestamp = datetime.now().strftime("%H%M%S%f")
         user_data = {
-            "email": "duplicate@brecklandheating.com",
+            "email": f"duplicate_{timestamp}@brecklandheating.com",
             "password": "Password123!",
             "name": "First User",
             "role": "staff"
         }
         
         # Register first user
-        success1, result1 = self.make_request('POST', 'auth/register', user_data, expected_status=200)
+        success1, result1 = self.make_request('POST', 'auth/register', user_data)
         
         # Try to register same email again
-        success2, result2 = self.make_request('POST', 'auth/register', user_data, expected_status=400)
+        success2, result2 = self.make_request('POST', 'auth/register', user_data)
         
-        if success1 and not success2 and "400" in str(result2):
+        if success1 and not success2 and ("400" in str(result2) or "already registered" in str(result2)):
             self.log_test("Duplicate email registration prevention", True)
             return True
         else:
-            self.log_test("Duplicate email registration prevention", False, "Should prevent duplicate email registration")
+            self.log_test("Duplicate email registration prevention", False, f"Should prevent duplicate email registration. First: {success1}, Second: {success2}, Result: {result2}")
             return False
 
     def test_unauthorized_access(self):

@@ -74,12 +74,12 @@ class BrecklandHeatingEdgeCaseTests:
             "password": "wrongpassword"
         }
         
-        success, result = self.make_request('POST', 'auth/login', invalid_credentials, expected_status=401)
-        if not success and "401" in str(result):
+        success, result = self.make_request('POST', 'auth/login', invalid_credentials)
+        if not success and ("401" in str(result) or "Unauthorized" in str(result)):
             self.log_test("Invalid login credentials", True)
             return True
         else:
-            self.log_test("Invalid login credentials", False, "Should return 401 for invalid credentials")
+            self.log_test("Invalid login credentials", False, f"Should return 401 for invalid credentials, got: {result}")
             return False
 
     def test_duplicate_user_registration(self):

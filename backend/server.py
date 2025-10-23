@@ -232,6 +232,8 @@ class GasSafetyCertificate(BaseModel):
     pump_pressure: Optional[str] = None
     nozzle_size: Optional[str] = None
     nozzle_angle: Optional[str] = None
+    nozzle_pattern: Optional[str] = None
+    co_co2_ratio: Optional[str] = None
     net_efficiency: Optional[str] = None
     gross_efficiency: Optional[str] = None
     parts_replaced: Optional[str] = None
@@ -368,6 +370,8 @@ class CertificateCreate(BaseModel):
     pump_pressure: Optional[str] = None
     nozzle_size: Optional[str] = None
     nozzle_angle: Optional[str] = None
+    nozzle_pattern: Optional[str] = None
+    co_co2_ratio: Optional[str] = None
     net_efficiency: Optional[str] = None
     gross_efficiency: Optional[str] = None
     parts_replaced: Optional[str] = None

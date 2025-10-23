@@ -13,6 +13,10 @@ import Services from './components/Services';
 import Invoices from './components/Invoices';
 import Estimates from './components/Estimates';
 import Certificates from './components/Certificates';
+import CertificateSelection from './components/CertificateSelection';
+import CD11Form from './components/certificateForms/CD11Form';
+import CD10Form from './components/certificateForms/CD10Form';
+import TI133DForm from './components/certificateForms/TI133DForm';
 import Settings from './components/Settings';
 import Layout from './components/Layout';
 

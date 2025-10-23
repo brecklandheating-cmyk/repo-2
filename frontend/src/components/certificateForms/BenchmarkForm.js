@@ -414,7 +414,6 @@ const BenchmarkForm = () => {
                     </div>
                   </div>
                 </div>
-              </div>
 
               <div className="border-t pt-4 space-y-3">
                 <h4 className="font-semibold mb-3">Safety Tests</h4>

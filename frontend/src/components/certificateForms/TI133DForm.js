@@ -226,6 +226,7 @@ const TI133DForm = () => {
                   rows={2}
                 />
               </div>
+            </div>
             </CardContent>
           </Card>
 

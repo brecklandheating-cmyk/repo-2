@@ -258,15 +258,12 @@ const Certificates = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-4xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'Space Grotesk' }}>
-            Gas Safety Certificates
+            Certificates
           </h1>
-          <p className="text-slate-600">Create and manage gas safety inspection certificates</p>
+          <p className="text-slate-600">Create and manage gas & oil safety certificates</p>
         </div>
         <Button
-          onClick={() => {
-            resetForm();
-            setCreateDialogOpen(true);
-          }}
+          onClick={() => navigate('/certificates/new')}
           data-testid="create-certificate-button"
           className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
         >

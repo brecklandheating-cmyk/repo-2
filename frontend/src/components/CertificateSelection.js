@@ -16,6 +16,14 @@ const CertificateSelection = () => {
       route: '/certificates/new/cp12'
     },
     {
+      type: 'BENCHMARK',
+      title: 'Benchmark Commissioning',
+      description: 'Gas Boiler Installation Commissioning Checklist',
+      icon: FileCheck,
+      color: 'emerald',
+      route: '/certificates/new/benchmark'
+    },
+    {
       type: 'CD11',
       title: 'CD11 Oil Boiler Service',
       description: 'OFTEC Oil Firing Servicing & Commissioning Report',

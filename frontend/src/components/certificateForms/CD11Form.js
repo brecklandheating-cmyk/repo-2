@@ -159,7 +159,10 @@ const CD11Form = () => {
                 Customer & Property Details
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <CardContent className="space-y-4">
+              <CustomerSelector onCustomerSelect={handleCustomerSelect} />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-2">
                 <Label>Customer Name *</Label>
                 <Input

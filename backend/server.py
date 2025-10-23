@@ -292,11 +292,13 @@ class GasSafetyCertificate(BaseModel):
     gas_rate: Optional[str] = None
     gas_inlet_pressure_max: Optional[str] = None
     burner_gas_pressure: Optional[str] = None
+    burner_pressure_na: Optional[bool] = None
     co_max_rate: Optional[str] = None
     co_min_rate: Optional[str] = None
     co2_max_rate: Optional[str] = None
     co2_min_rate: Optional[str] = None
-    co_co2_ratio: Optional[str] = None
+    co_co2_ratio_max: Optional[str] = None
+    co_co2_ratio_min: Optional[str] = None
     flue_integrity_checked: Optional[bool] = None
     gas_tightness_tested: Optional[bool] = None
     spillage_test_passed: Optional[bool] = None

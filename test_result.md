@@ -107,87 +107,108 @@ user_problem_statement: "Breckland Heating Business Management Application - Ful
 backend:
   - task: "User Authentication (Register/Login)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Authentication system implemented with JWT. Needs comprehensive testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Admin and staff registration working. Login with valid/invalid credentials tested. JWT token generation and validation working. /auth/me endpoint working. Token persistence across multiple requests verified. All authentication flows working correctly."
         
   - task: "Customer Management (CRUD)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Customer create, read, update, delete endpoints implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Customer creation with auto-numbering (C00001 format) working. Get all customers and get by ID working. Customer update working. Customer deletion restricted to admin users only. All CRUD operations tested successfully."
         
   - task: "Services Management"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Service tracking endpoints implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Service creation, retrieval, and listing working correctly. Service pricing and descriptions handled properly. All service management endpoints tested successfully."
         
   - task: "Invoice Generation"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Invoice CRUD with status updates implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Invoice creation with auto-numbering (INV00001 format) working. Customer lookup and invoice item calculations working. VAT calculations correct. Invoice status updates (paid/unpaid) working. Get invoices list working. All invoice functionality tested successfully."
         
   - task: "Estimates/Quotes Management"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Estimates with conversion to invoice feature implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Estimate creation with auto-numbering (EST00001 format) working. Estimate to invoice conversion working correctly. Prevents double conversion of estimates. All estimate management features tested successfully."
         
   - task: "CP12 Certificate System"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "CP12 certificate management with signature support implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: CP12 certificate creation with auto-numbering (CP12-00001 format) working. Appliance checks, safety data, and signature fields all working. Certificate retrieval by ID and listing working. Certificate updates working. All CP12 certificate functionality tested successfully."
         
   - task: "Settings Management"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Settings CRUD with logo upload implemented. Needs testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED: Company settings retrieval and updates working. Default settings creation working. Admin-only access control working. All settings management features tested successfully."
 
 frontend:
   - task: "Login/Authentication UI"

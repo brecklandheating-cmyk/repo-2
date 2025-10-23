@@ -860,11 +860,12 @@ const Certificates = () => {
                 </div>
               </div>
 
-              {/* Appliances */}
-              <div className="border-2 rounded-lg p-4">
-                <h3 className="font-bold text-lg mb-3">Appliances Inspected</h3>
-                <div className="space-y-4">
-                  {selectedCertificate.appliances.map((app, index) => (
+              {/* Appliances - Only for CP12 certificates */}
+              {selectedCertificate.appliances && selectedCertificate.appliances.length > 0 && (
+                <div className="border-2 rounded-lg p-4">
+                  <h3 className="font-bold text-lg mb-3">Appliances Inspected</h3>
+                  <div className="space-y-4">
+                    {selectedCertificate.appliances.map((app, index) => (
                     <div key={index} className="border-2 rounded-lg p-4 bg-slate-50">
                       <div className="mb-3">
                         <h4 className="font-bold text-base">{app.appliance_type} - {app.make_model}</h4>

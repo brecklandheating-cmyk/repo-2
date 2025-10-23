@@ -932,6 +932,63 @@ const Certificates = () => {
               </div>
               )}
 
+              {/* Certificate Details for non-CP12 certificates */}
+              {selectedCertificate.certificate_type !== 'CP12' && (
+                <div className="border-2 rounded-lg p-4">
+                  <h3 className="font-bold text-lg mb-3">Certificate Details</h3>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    {selectedCertificate.boiler_make && (
+                      <div>
+                        <p className="font-semibold">Boiler Make:</p>
+                        <p>{selectedCertificate.boiler_make}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.boiler_model && (
+                      <div>
+                        <p className="font-semibold">Boiler Model:</p>
+                        <p>{selectedCertificate.boiler_model}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.boiler_serial_number && (
+                      <div>
+                        <p className="font-semibold">Serial Number:</p>
+                        <p>{selectedCertificate.boiler_serial_number}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.boiler_type && (
+                      <div>
+                        <p className="font-semibold">Boiler Type:</p>
+                        <p>{selectedCertificate.boiler_type}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.appliance_make_model && (
+                      <div>
+                        <p className="font-semibold">Appliance:</p>
+                        <p>{selectedCertificate.appliance_make_model}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.tank_type && (
+                      <div>
+                        <p className="font-semibold">Tank Type:</p>
+                        <p>{selectedCertificate.tank_type}</p>
+                      </div>
+                    )}
+                    {selectedCertificate.tank_capacity && (
+                      <div>
+                        <p className="font-semibold">Tank Capacity:</p>
+                        <p>{selectedCertificate.tank_capacity} litres</p>
+                      </div>
+                    )}
+                    {selectedCertificate.notes && (
+                      <div className="col-span-2">
+                        <p className="font-semibold">Notes:</p>
+                        <p className="whitespace-pre-wrap">{selectedCertificate.notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Bottom Section */}
               <div className="border-2 rounded-lg p-4 bg-slate-50">
                 <div className="grid grid-cols-2 gap-4 text-sm">

@@ -340,6 +340,133 @@ class BrecklandHeatingAPITester:
             self.log_test("Update company settings", False, str(result))
             return False
 
+    def test_create_cp12_certificate(self):
+        """Test CP12 certificate creation with auto-numbering"""
+        certificate_data = {
+            "certificate_type": "CP12",
+            "landlord_customer_name": "Test Landlord Properties Ltd",
+            "landlord_customer_address": "456 Landlord Street, Norwich, NR3 3CC",
+            "landlord_customer_phone": "01234 111222",
+            "landlord_customer_email": "landlord@testproperties.com",
+            "inspection_address": "789 Rental Property, Norwich, NR4 4DD",
+            "let_by_tightness_test": True,
+            "equipotential_bonding": True,
+            "ecv_accessible": True,
+            "pipework_visual_inspection": True,
+            "co_alarm_working": True,
+            "smoke_alarm_working": True,
+            "appliances": [{
+                "appliance_type": "Boiler",
+                "make_model": "Worcester Bosch Greenstar 30i",
+                "installation_area": "Kitchen",
+                "to_be_inspected": True,
+                "flue_type": "Balanced",
+                "operating_pressure": "20.0 mb",
+                "safety_devices_ok": True,
+                "ventilation_satisfactory": True,
+                "flue_condition_satisfactory": True,
+                "flue_operation_ok": True,
+                "co_reading": "0.0012",
+                "co2_reading": "8.5000",
+                "fan_pressure_reading": "-125.5 mb",
+                "defects": None
+            }],
+            "compliance_statement": "All appliances checked are safe to use",
+            "inspection_date": datetime.now().isoformat(),
+            "next_inspection_due": (datetime.now() + timedelta(days=365)).isoformat(),
+            "engineer_name": "John Smith",
+            "gas_safe_number": "123456",
+            "responsible_person_signature": "Test Signature",
+            "engineer_signature": "Engineer Signature",
+            "notes": "Test CP12 certificate"
+        }
+        
+        success, result = self.make_request('POST', 'certificates', certificate_data, token=self.admin_token, expected_status=200)
+        if success and 'certificate_number' in result and result['certificate_number'].startswith('CP12'):
+            self.test_certificate_id = result['id']
+            self.log_test("Create CP12 certificate with auto-numbering", True)
+            return True
+        else:
+            self.log_test("Create CP12 certificate with auto-numbering", False, str(result))
+            return False
+
+    def test_get_certificates(self):
+        """Test getting all certificates"""
+        success, result = self.make_request('GET', 'certificates', token=self.admin_token, expected_status=200)
+        if success and isinstance(result, list) and len(result) > 0:
+            self.log_test("Get certificates list", True)
+            return True
+        else:
+            self.log_test("Get certificates list", False, str(result))
+            return False
+
+    def test_get_certificate_by_id(self):
+        """Test getting specific certificate by ID"""
+        if not self.test_certificate_id:
+            self.log_test("Get certificate by ID", False, "No certificate ID available")
+            return False
+            
+        success, result = self.make_request('GET', f'certificates/{self.test_certificate_id}', token=self.admin_token, expected_status=200)
+        if success and 'certificate_number' in result and 'appliances' in result:
+            self.log_test("Get certificate by ID", True)
+            return True
+        else:
+            self.log_test("Get certificate by ID", False, str(result))
+            return False
+
+    def test_update_certificate(self):
+        """Test certificate update"""
+        if not self.test_certificate_id:
+            self.log_test("Update certificate", False, "No certificate ID available")
+            return False
+            
+        update_data = {
+            "certificate_type": "CP12",
+            "landlord_customer_name": "Updated Test Landlord Properties Ltd",
+            "landlord_customer_address": "456 Updated Landlord Street, Norwich, NR3 3CC",
+            "landlord_customer_phone": "01234 999888",
+            "landlord_customer_email": "updated@testproperties.com",
+            "inspection_address": "789 Updated Rental Property, Norwich, NR4 4DD",
+            "let_by_tightness_test": True,
+            "equipotential_bonding": True,
+            "ecv_accessible": True,
+            "pipework_visual_inspection": True,
+            "co_alarm_working": True,
+            "smoke_alarm_working": True,
+            "appliances": [{
+                "appliance_type": "Boiler",
+                "make_model": "Worcester Bosch Greenstar 30i",
+                "installation_area": "Kitchen",
+                "to_be_inspected": True,
+                "flue_type": "Balanced",
+                "operating_pressure": "20.0 mb",
+                "safety_devices_ok": True,
+                "ventilation_satisfactory": True,
+                "flue_condition_satisfactory": True,
+                "flue_operation_ok": True,
+                "co_reading": "0.0012",
+                "co2_reading": "8.5000",
+                "fan_pressure_reading": "-125.5 mb",
+                "defects": None
+            }],
+            "compliance_statement": "All appliances checked are safe to use - Updated",
+            "inspection_date": datetime.now().isoformat(),
+            "next_inspection_due": (datetime.now() + timedelta(days=365)).isoformat(),
+            "engineer_name": "John Smith Updated",
+            "gas_safe_number": "123456",
+            "responsible_person_signature": "Updated Test Signature",
+            "engineer_signature": "Updated Engineer Signature",
+            "notes": "Updated test CP12 certificate"
+        }
+        
+        success, result = self.make_request('PUT', f'certificates/{self.test_certificate_id}', update_data, token=self.admin_token, expected_status=200)
+        if success and result.get('landlord_customer_name') == update_data['landlord_customer_name']:
+            self.log_test("Update certificate", True)
+            return True
+        else:
+            self.log_test("Update certificate", False, str(result))
+            return False
+
     def test_staff_access_restrictions(self):
         """Test that staff users cannot access admin-only features"""
         if not self.staff_token:

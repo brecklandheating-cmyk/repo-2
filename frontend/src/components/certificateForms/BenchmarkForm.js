@@ -103,6 +103,30 @@ const BenchmarkForm = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleCustomerSelect = (customer) => {
+    if (customer) {
+      setFormData(prev => ({
+        ...prev,
+        landlord_customer_name: customer.name,
+        landlord_customer_address: customer.address,
+        landlord_customer_phone: customer.phone,
+        landlord_customer_email: customer.email || '',
+        inspection_address: customer.address // Default to customer address
+      }));
+      toast.success('Customer details loaded!');
+    } else {
+      // Clear customer fields when manual entry selected
+      setFormData(prev => ({
+        ...prev,
+        landlord_customer_name: '',
+        landlord_customer_address: '',
+        landlord_customer_phone: '',
+        landlord_customer_email: '',
+        inspection_address: ''
+      }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

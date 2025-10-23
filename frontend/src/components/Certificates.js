@@ -90,16 +90,23 @@ const Certificates = () => {
   };
 
   const filterCertificates = () => {
-    if (!searchTerm) {
-      setFilteredCertificates(certificates);
-      return;
+    let filtered = certificates;
+    
+    // Filter by certificate type
+    if (certificateTypeFilter !== 'ALL') {
+      filtered = filtered.filter(cert => cert.certificate_type === certificateTypeFilter);
     }
-    const filtered = certificates.filter(
-      (cert) =>
-        cert.certificate_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cert.landlord_customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cert.inspection_address.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(
+        (cert) =>
+          cert.certificate_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          cert.landlord_customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          cert.inspection_address.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
     setFilteredCertificates(filtered);
   };
 

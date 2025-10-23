@@ -192,12 +192,12 @@ class BrecklandHeatingEdgeCaseTests:
             return False
             
         # Now test invalid status update
-        success, result = self.make_request('PATCH', f'invoices/{invoice["id"]}/status', {'status': 'invalid_status'}, token=self.admin_token, expected_status=400)
-        if not success and "400" in str(result):
+        success, result = self.make_request('PATCH', f'invoices/{invoice["id"]}/status', {'status': 'invalid_status'}, token=self.admin_token)
+        if not success and ("400" in str(result) or "Invalid status" in str(result)):
             self.log_test("Invalid invoice status update", True)
             return True
         else:
-            self.log_test("Invalid invoice status update", False, "Should reject invalid status values")
+            self.log_test("Invalid invoice status update", False, f"Should reject invalid status values, got: {result}")
             return False
 
     def test_convert_already_converted_estimate(self):

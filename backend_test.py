@@ -535,6 +535,12 @@ class BrecklandHeatingAPITester:
         self.test_get_settings()
         self.test_update_settings()
         
+        # Certificate management tests
+        self.test_create_cp12_certificate()
+        self.test_get_certificates()
+        self.test_get_certificate_by_id()
+        self.test_update_certificate()
+        
         # Access control tests
         self.test_staff_access_restrictions()
         

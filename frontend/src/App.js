@@ -119,6 +119,7 @@ function App() {
                     <Route path="/estimates" element={<Estimates />} />
                     <Route path="/certificates" element={<Certificates />} />
                     <Route path="/certificates/new" element={<CertificateSelection />} />
+                    <Route path="/certificates/new/benchmark" element={<BenchmarkForm />} />
                     <Route path="/certificates/new/cd11" element={<CD11Form />} />
                     <Route path="/certificates/new/cd10" element={<CD10Form />} />
                     <Route path="/certificates/new/ti133d" element={<TI133DForm />} />

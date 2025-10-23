@@ -141,12 +141,12 @@ class BrecklandHeatingEdgeCaseTests:
             "vat_rate": 20.0
         }
         
-        success, result = self.make_request('POST', 'invoices', invalid_invoice_data, token=self.admin_token, expected_status=404)
-        if not success and "404" in str(result):
+        success, result = self.make_request('POST', 'invoices', invalid_invoice_data, token=self.admin_token)
+        if not success and ("404" in str(result) or "not found" in str(result).lower()):
             self.log_test("Invalid invoice customer ID handling", True)
             return True
         else:
-            self.log_test("Invalid invoice customer ID handling", False, "Should return 404 for non-existent customer")
+            self.log_test("Invalid invoice customer ID handling", False, f"Should return 404 for non-existent customer, got: {result}")
             return False
 
     def test_invalid_invoice_status_update(self):

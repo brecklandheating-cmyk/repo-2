@@ -193,7 +193,7 @@ class BrecklandHeatingEdgeCaseTests:
             
         # Now test invalid status update
         success, result = self.make_request('PATCH', f'invoices/{invoice["id"]}/status', {'status': 'invalid_status'}, token=self.admin_token)
-        if not success and ("400" in str(result) or "Invalid status" in str(result)):
+        if not success and ("Invalid status" in str(result) or "400" in str(result)):
             self.log_test("Invalid invoice status update", True)
             return True
         else:

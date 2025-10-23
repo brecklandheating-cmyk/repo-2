@@ -349,7 +349,8 @@ const CD11Form = () => {
                   type="number"
                   value={formData.co_ppm}
                   onChange={(e) => handleChange('co_ppm', e.target.value)}
-                  placeholder="0-50"
+                  placeholder="0-5000"
+                  max="5000"
                   required
                 />
               </div>
@@ -360,7 +361,20 @@ const CD11Form = () => {
                   step="0.1"
                   value={formData.co2_percent}
                   onChange={(e) => handleChange('co2_percent', e.target.value)}
-                  placeholder="11-14"
+                  placeholder="8-15"
+                  min="8"
+                  max="15"
+                  required
+                />
+              </div>
+              <div>
+                <Label>CO/CO₂ Ratio *</Label>
+                <Input
+                  type="number"
+                  step="0.0001"
+                  value={formData.co_co2_ratio}
+                  onChange={(e) => handleChange('co_co2_ratio', e.target.value)}
+                  placeholder="e.g., 0.0025"
                   required
                 />
               </div>

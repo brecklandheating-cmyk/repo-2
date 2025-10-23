@@ -51,6 +51,8 @@ const CD11Form = () => {
     pump_pressure: '',
     nozzle_size: '',
     nozzle_angle: '',
+    nozzle_pattern: '',
+    co_co2_ratio: '',
     net_efficiency: '',
     gross_efficiency: '',
     excess_air_percent: '',

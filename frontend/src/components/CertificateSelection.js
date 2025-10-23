@@ -103,6 +103,7 @@ const CertificateSelection = () => {
           <h3 className="font-semibold text-lg mb-2">Certificate Information</h3>
           <ul className="space-y-2 text-sm text-slate-600">
             <li><strong>CP12:</strong> Required annually for landlords with gas appliances</li>
+            <li><strong>Benchmark:</strong> Gas boiler commissioning checklist for new installations</li>
             <li><strong>CD11:</strong> Oil boiler service certificate with combustion analysis</li>
             <li><strong>CD10:</strong> Installation certificate for new oil heating systems</li>
             <li><strong>TI/133D:</strong> Risk assessment for domestic oil storage tanks</li>

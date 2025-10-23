@@ -921,6 +921,7 @@ const Certificates = () => {
                   ))}
                 </div>
               </div>
+              )}
 
               {/* Bottom Section */}
               <div className="border-2 rounded-lg p-4 bg-slate-50">

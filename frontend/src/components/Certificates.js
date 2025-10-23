@@ -283,6 +283,70 @@ const Certificates = () => {
       {/* Search */}
       <Card className="border-0 shadow-lg">
         <CardContent className="p-4">
+          {/* Certificate Type Filter Tabs */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Button
+              variant={certificateTypeFilter === 'ALL' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('ALL')}
+              className="flex items-center gap-2"
+            >
+              All Certificates
+              <span className="px-2 py-0.5 text-xs rounded-full bg-slate-200 text-slate-700">
+                {certificates.length}
+              </span>
+            </Button>
+            <Button
+              variant={certificateTypeFilter === 'CP12' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('CP12')}
+              className="flex items-center gap-2"
+            >
+              CP12
+              <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 text-blue-700">
+                {certificates.filter(c => c.certificate_type === 'CP12').length}
+              </span>
+            </Button>
+            <Button
+              variant={certificateTypeFilter === 'BENCHMARK' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('BENCHMARK')}
+              className="flex items-center gap-2"
+            >
+              Benchmark
+              <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-100 text-emerald-700">
+                {certificates.filter(c => c.certificate_type === 'BENCHMARK').length}
+              </span>
+            </Button>
+            <Button
+              variant={certificateTypeFilter === 'CD11' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('CD11')}
+              className="flex items-center gap-2"
+            >
+              CD11
+              <span className="px-2 py-0.5 text-xs rounded-full bg-orange-100 text-orange-700">
+                {certificates.filter(c => c.certificate_type === 'CD11').length}
+              </span>
+            </Button>
+            <Button
+              variant={certificateTypeFilter === 'CD10' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('CD10')}
+              className="flex items-center gap-2"
+            >
+              CD10
+              <span className="px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-700">
+                {certificates.filter(c => c.certificate_type === 'CD10').length}
+              </span>
+            </Button>
+            <Button
+              variant={certificateTypeFilter === 'TI133D' ? 'default' : 'outline'}
+              onClick={() => setCertificateTypeFilter('TI133D')}
+              className="flex items-center gap-2"
+            >
+              TI/133D
+              <span className="px-2 py-0.5 text-xs rounded-full bg-purple-100 text-purple-700">
+                {certificates.filter(c => c.certificate_type === 'TI133D').length}
+              </span>
+            </Button>
+          </div>
+          
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
             <Input

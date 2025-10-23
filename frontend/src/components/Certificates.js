@@ -765,9 +765,16 @@ const Certificates = () => {
         <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
           <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Gas Safety Certificate - {selectedCertificate.certificate_number}</DialogTitle>
+              <DialogTitle>
+                {selectedCertificate.certificate_type === 'CP12' && 'Gas Safety Certificate'}
+                {selectedCertificate.certificate_type === 'BENCHMARK' && 'Benchmark Commissioning Certificate'}
+                {selectedCertificate.certificate_type === 'CD11' && 'CD11 Oil Boiler Service Certificate'}
+                {selectedCertificate.certificate_type === 'CD10' && 'CD10 Oil Installation Certificate'}
+                {selectedCertificate.certificate_type === 'TI133D' && 'TI/133D Tank Risk Assessment'}
+                {' - '}{selectedCertificate.certificate_number}
+              </DialogTitle>
               <DialogDescription>
-                Official gas safety inspection record
+                Official {selectedCertificate.certificate_type} inspection record
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-6 print:space-y-4">

@@ -680,8 +680,7 @@ const BenchmarkForm = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Gas Safe Register">Gas Safe Register</SelectItem>
-                      <SelectItem value="Local Authority Building Control">Local Authority Building Control</SelectItem>
-                      <SelectItem value="Approved Inspector">Approved Inspector</SelectItem>
+                      <SelectItem value="Manufacturer's Website">Manufacturer's Website</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

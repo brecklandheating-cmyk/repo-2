@@ -17,6 +17,7 @@ import CertificateSelection from './components/CertificateSelection';
 import CD11Form from './components/certificateForms/CD11Form';
 import CD10Form from './components/certificateForms/CD10Form';
 import TI133DForm from './components/certificateForms/TI133DForm';
+import BenchmarkForm from './components/certificateForms/BenchmarkForm';
 import Settings from './components/Settings';
 import Layout from './components/Layout';
 

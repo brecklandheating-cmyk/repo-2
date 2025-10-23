@@ -422,12 +422,29 @@ const CD11Form = () => {
                 />
               </div>
               <div>
-                <Label>Nozzle Angle</Label>
+                <Label>Nozzle Angle (°)</Label>
                 <Input
                   value={formData.nozzle_angle}
                   onChange={(e) => handleChange('nozzle_angle', e.target.value)}
                   placeholder="e.g., 60°"
                 />
+              </div>
+              <div>
+                <Label>Nozzle Pattern</Label>
+                <Select
+                  value={formData.nozzle_pattern}
+                  onValueChange={(value) => handleChange('nozzle_pattern', value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select pattern" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="S">S (Solid)</SelectItem>
+                    <SelectItem value="H">H (Hollow)</SelectItem>
+                    <SelectItem value="ES">ES (Semi-Solid)</SelectItem>
+                    <SelectItem value="EH">EH (Semi-Hollow)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label>Excess Air (%)</Label>

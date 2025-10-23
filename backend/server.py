@@ -284,6 +284,39 @@ class GasSafetyCertificate(BaseModel):
     actions_required: Optional[str] = None
     urgent_attention_needed: Optional[bool] = None
     
+    # BENCHMARK - Gas Boiler Commissioning Certificate fields
+    boiler_make: Optional[str] = None
+    boiler_model: Optional[str] = None
+    boiler_serial_number: Optional[str] = None
+    boiler_type: Optional[str] = None
+    gas_rate: Optional[str] = None
+    gas_inlet_pressure_max: Optional[str] = None
+    burner_gas_pressure: Optional[str] = None
+    co_max_rate: Optional[str] = None
+    co_min_rate: Optional[str] = None
+    co2_max_rate: Optional[str] = None
+    co2_min_rate: Optional[str] = None
+    co_co2_ratio: Optional[str] = None
+    flue_integrity_checked: Optional[bool] = None
+    gas_tightness_tested: Optional[bool] = None
+    spillage_test_passed: Optional[bool] = None
+    cold_water_inlet_temp: Optional[str] = None
+    hot_water_outlets_tested: Optional[bool] = None
+    heating_controls_tested: Optional[bool] = None
+    hot_water_controls_tested: Optional[bool] = None
+    interlock_tested: Optional[bool] = None
+    condensate_installed_correctly: Optional[bool] = None
+    condensate_termination: Optional[str] = None
+    condensate_disposal_method: Optional[str] = None
+    complies_with_manufacturer_instructions: Optional[bool] = None
+    clearances_met: Optional[bool] = None
+    gas_supply_purged: Optional[bool] = None
+    operation_demonstrated: Optional[bool] = None
+    literature_provided: Optional[bool] = None
+    benchmark_explained: Optional[bool] = None
+    notification_method: Optional[str] = None
+    compliance_certificate_issued: Optional[bool] = None
+    
     # Common bottom section
     inspection_date: datetime
     next_inspection_due: Optional[datetime] = None

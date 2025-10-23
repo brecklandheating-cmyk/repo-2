@@ -231,6 +231,7 @@ const BenchmarkForm = () => {
                   rows={2}
                 />
               </div>
+            </div>
             </CardContent>
           </Card>
 

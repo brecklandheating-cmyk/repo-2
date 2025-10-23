@@ -267,6 +267,22 @@ class GasSafetyCertificate(BaseModel):
     fire_risk_level: Optional[str] = None
     distance_to_building: Optional[str] = None
     secondary_containment_adequate: Optional[bool] = None
+    tank_age: Optional[str] = None
+    tank_location: Optional[str] = None
+    tank_condition_good: Optional[bool] = None
+    tank_positioned_correctly: Optional[bool] = None
+    adequate_ventilation: Optional[bool] = None
+    fire_valve_present: Optional[bool] = None
+    distance_adequate: Optional[bool] = None
+    away_from_ignition_sources: Optional[bool] = None
+    away_from_drains: Optional[bool] = None
+    pipework_secure: Optional[bool] = None
+    no_visible_leaks: Optional[bool] = None
+    vent_pipe_correct: Optional[bool] = None
+    fill_line_correct: Optional[bool] = None
+    environmental_hazards: Optional[str] = None
+    actions_required: Optional[str] = None
+    urgent_attention_needed: Optional[bool] = None
     
     # Common bottom section
     inspection_date: datetime

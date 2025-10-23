@@ -43,6 +43,13 @@ class BrecklandHeatingEdgeCaseTests:
             if expected_status and response.status_code != expected_status:
                 return False, f"Expected {expected_status}, got {response.status_code}: {response.text}"
             
+            # Check if it's an error status code
+            if response.status_code >= 400:
+                try:
+                    return False, response.json()
+                except:
+                    return False, response.text
+            
             try:
                 return True, response.json()
             except:

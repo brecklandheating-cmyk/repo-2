@@ -144,13 +144,6 @@ const BenchmarkForm = () => {
     }
   };
 
-  const calculateCOCO2Ratio = () => {
-    if (formData.co_max_rate && formData.co2_max_rate) {
-      const ratio = (parseFloat(formData.co_max_rate) / parseFloat(formData.co2_max_rate)).toFixed(4);
-      handleChange('co_co2_ratio', ratio);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
       <div className="max-w-5xl mx-auto">

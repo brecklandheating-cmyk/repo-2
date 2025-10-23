@@ -251,6 +251,15 @@ class GasSafetyCertificate(BaseModel):
     pipework_material: Optional[str] = None
     fire_valve_fitted: Optional[bool] = None
     building_control_notified: Optional[bool] = None
+    installation_date: Optional[datetime] = None
+    work_type: Optional[str] = None
+    appliance_serial_number: Optional[str] = None
+    output_rating: Optional[str] = None
+    fuel_type: Optional[str] = None
+    tank_pressure_tested: Optional[bool] = None
+    pressure_test_result: Optional[str] = None
+    complies_with_standards: Optional[bool] = None
+    customer_signature: Optional[str] = None
     
     # TI133D - Oil Tank Risk Assessment fields
     tank_construction: Optional[str] = None  # Single wall or Bunded

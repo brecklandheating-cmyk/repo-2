@@ -824,7 +824,8 @@ const Certificates = () => {
                 <p className="text-sm">{selectedCertificate.inspection_address}</p>
               </div>
 
-              {/* General Installation Checks */}
+              {/* General Installation Checks - CP12 Only */}
+              {selectedCertificate.certificate_type === 'CP12' && (
               <div className="border-2 rounded-lg p-4">
                 <h3 className="font-bold text-lg mb-3">General Installation Checks</h3>
                 <div className="grid grid-cols-2 gap-3 text-sm">

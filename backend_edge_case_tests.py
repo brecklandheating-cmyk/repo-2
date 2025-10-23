@@ -118,7 +118,7 @@ class BrecklandHeatingEdgeCaseTests:
     def test_invalid_customer_id(self):
         """Test accessing non-existent customer"""
         success, result = self.make_request('GET', 'customers/invalid-id-12345', token=self.admin_token)
-        if not success and ("404" in str(result) or "not found" in str(result).lower()):
+        if not success and ("Customer not found" in str(result) or "404" in str(result)):
             self.log_test("Invalid customer ID handling", True)
             return True
         else:

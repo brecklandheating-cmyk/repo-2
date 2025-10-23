@@ -142,7 +142,7 @@ class BrecklandHeatingEdgeCaseTests:
         }
         
         success, result = self.make_request('POST', 'invoices', invalid_invoice_data, token=self.admin_token)
-        if not success and ("404" in str(result) or "not found" in str(result).lower()):
+        if not success and ("Customer not found" in str(result) or "404" in str(result)):
             self.log_test("Invalid invoice customer ID handling", True)
             return True
         else:

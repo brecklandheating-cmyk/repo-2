@@ -867,6 +867,7 @@ const Certificates = () => {
                   </div>
                 </div>
               </div>
+              )}
 
               {/* Appliances - Only for CP12 certificates */}
               {selectedCertificate.appliances && selectedCertificate.appliances.length > 0 && (

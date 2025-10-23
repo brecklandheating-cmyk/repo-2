@@ -249,12 +249,12 @@ class BrecklandHeatingEdgeCaseTests:
             return False
             
         # Try to convert again
-        success, result2 = self.make_request('POST', f'estimates/{estimate["id"]}/convert', token=self.admin_token, expected_status=400)
-        if not success and "400" in str(result2):
+        success, result2 = self.make_request('POST', f'estimates/{estimate["id"]}/convert', token=self.admin_token)
+        if not success and ("400" in str(result2) or "already converted" in str(result2)):
             self.log_test("Convert already converted estimate", True)
             return True
         else:
-            self.log_test("Convert already converted estimate", False, "Should prevent double conversion")
+            self.log_test("Convert already converted estimate", False, f"Should prevent double conversion, got: {result2}")
             return False
 
     def run_edge_case_tests(self):

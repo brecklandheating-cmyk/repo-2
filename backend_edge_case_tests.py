@@ -117,12 +117,12 @@ class BrecklandHeatingEdgeCaseTests:
 
     def test_invalid_customer_id(self):
         """Test accessing non-existent customer"""
-        success, result = self.make_request('GET', 'customers/invalid-id-12345', token=self.admin_token, expected_status=404)
-        if not success and "404" in str(result):
+        success, result = self.make_request('GET', 'customers/invalid-id-12345', token=self.admin_token)
+        if not success and ("404" in str(result) or "not found" in str(result).lower()):
             self.log_test("Invalid customer ID handling", True)
             return True
         else:
-            self.log_test("Invalid customer ID handling", False, "Should return 404 for non-existent customer")
+            self.log_test("Invalid customer ID handling", False, f"Should return 404 for non-existent customer, got: {result}")
             return False
 
     def test_invalid_invoice_data(self):

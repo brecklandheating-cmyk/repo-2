@@ -101,3 +101,150 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Breckland Heating Business Management Application - Full integration testing of all features including authentication, customer management, services, invoices, estimates, and CP12 certificate management system."
+
+backend:
+  - task: "User Authentication (Register/Login)"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Authentication system implemented with JWT. Needs comprehensive testing."
+        
+  - task: "Customer Management (CRUD)"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Customer create, read, update, delete endpoints implemented. Needs testing."
+        
+  - task: "Services Management"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Service tracking endpoints implemented. Needs testing."
+        
+  - task: "Invoice Generation"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Invoice CRUD with status updates implemented. Needs testing."
+        
+  - task: "Estimates/Quotes Management"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Estimates with conversion to invoice feature implemented. Needs testing."
+        
+  - task: "CP12 Certificate System"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "CP12 certificate management with signature support implemented. Needs testing."
+        
+  - task: "Settings Management"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Settings CRUD with logo upload implemented. Needs testing."
+
+frontend:
+  - task: "Login/Authentication UI"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/Login.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Login component implemented. Will be tested manually by user after backend testing."
+        
+  - task: "Dashboard"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/Dashboard.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Dashboard implemented. Will be tested manually."
+        
+  - task: "Customer Management UI"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/Customers.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Customer UI implemented. Will be tested manually."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "User Authentication (Register/Login)"
+    - "Customer Management (CRUD)"
+    - "Services Management"
+    - "Invoice Generation"
+    - "Estimates/Quotes Management"
+    - "CP12 Certificate System"
+    - "Settings Management"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Initiating comprehensive backend testing for all implemented features. Testing all API endpoints including auth, customers, services, invoices, estimates, certificates, and settings. User will manually test frontend via Preview after backend validation."

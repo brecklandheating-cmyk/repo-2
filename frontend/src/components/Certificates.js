@@ -20,6 +20,7 @@ const Certificates = () => {
   const [filteredCertificates, setFilteredCertificates] = useState([]);
   const [settings, setSettings] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [certificateTypeFilter, setCertificateTypeFilter] = useState('ALL');
   const [loading, setLoading] = useState(true);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [viewDialogOpen, setViewDialogOpen] = useState(false);

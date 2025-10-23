@@ -11,6 +11,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 import { FileText, Building2, User, Wrench, ArrowLeft } from 'lucide-react';
 import SignatureInput from '../SignatureInput';
+import CustomerSelector from '../CustomerSelector';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;

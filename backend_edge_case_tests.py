@@ -98,7 +98,7 @@ class BrecklandHeatingEdgeCaseTests:
         # Try to register same email again
         success2, result2 = self.make_request('POST', 'auth/register', user_data)
         
-        if success1 and not success2 and ("400" in str(result2) or "already registered" in str(result2)):
+        if success1 and not success2 and ("Email already registered" in str(result2) or "400" in str(result2)):
             self.log_test("Duplicate email registration prevention", True)
             return True
         else:

@@ -358,10 +358,7 @@ const BenchmarkForm = () => {
                     <Input
                       type="number"
                       value={formData.co_max_rate}
-                      onChange={(e) => {
-                        handleChange('co_max_rate', e.target.value);
-                        setTimeout(calculateCOCO2Ratio, 100);
-                      }}
+                      onChange={(e) => handleChange('co_max_rate', e.target.value)}
                       required
                     />
                   </div>
@@ -380,10 +377,7 @@ const BenchmarkForm = () => {
                       type="number"
                       step="0.1"
                       value={formData.co2_max_rate}
-                      onChange={(e) => {
-                        handleChange('co2_max_rate', e.target.value);
-                        setTimeout(calculateCOCO2Ratio, 100);
-                      }}
+                      onChange={(e) => handleChange('co2_max_rate', e.target.value)}
                       required
                     />
                   </div>
@@ -399,14 +393,34 @@ const BenchmarkForm = () => {
                   </div>
                 </div>
                 
-                {formData.co_co2_ratio && (
-                  <div className="mt-3 p-3 bg-blue-50 rounded-lg">
-                    <p className="text-sm">
-                      <strong>CO/CO₂ Ratio:</strong> {formData.co_co2_ratio} 
-                      <span className="ml-2 text-xs text-slate-600">(Must be ≤ 0.004 for safe operation)</span>
-                    </p>
+                <div className="mt-4">
+                  <h4 className="font-semibold mb-3">CO/CO₂ Ratio</h4>
+                  <p className="text-sm text-slate-600 mb-3">Enter the ratio values (must be ≤ 0.004 for safe operation)</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label>CO/CO₂ Ratio at Max Rate *</Label>
+                      <Input
+                        type="number"
+                        step="0.0001"
+                        value={formData.co_co2_ratio_max}
+                        onChange={(e) => handleChange('co_co2_ratio_max', e.target.value)}
+                        placeholder="e.g., 0.0025"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label>CO/CO₂ Ratio at Min Rate *</Label>
+                      <Input
+                        type="number"
+                        step="0.0001"
+                        value={formData.co_co2_ratio_min}
+                        onChange={(e) => handleChange('co_co2_ratio_min', e.target.value)}
+                        placeholder="e.g., 0.0020"
+                        required
+                      />
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
 
               <div className="border-t pt-4 space-y-3">

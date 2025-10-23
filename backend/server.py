@@ -221,6 +221,20 @@ class GasSafetyCertificate(BaseModel):
     co2_percent: Optional[str] = None
     oil_flow_rate: Optional[str] = None
     flue_gas_temp: Optional[str] = None
+    appliance_make_model: Optional[str] = None
+    burner_type: Optional[str] = None
+    burner_cleaned: Optional[bool] = None
+    nozzle_replaced: Optional[bool] = None
+    filter_checked: Optional[bool] = None
+    controls_tested: Optional[bool] = None
+    safety_devices_tested: Optional[bool] = None
+    flue_inspected: Optional[bool] = None
+    pump_pressure: Optional[str] = None
+    nozzle_size: Optional[str] = None
+    nozzle_angle: Optional[str] = None
+    net_efficiency: Optional[str] = None
+    gross_efficiency: Optional[str] = None
+    parts_replaced: Optional[str] = None
     
     # GWN - Gas Warning Notice fields
     risk_classification: Optional[str] = None  # ID or AR

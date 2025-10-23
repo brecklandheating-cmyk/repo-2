@@ -1004,8 +1004,230 @@ const Certificates = () => {
               </div>
               )}
 
-              {/* Certificate Details for non-CP12 certificates */}
-              {selectedCertificate.certificate_type !== 'CP12' && (
+              {/* Benchmark Certificate Detailed View */}
+              {selectedCertificate.certificate_type === 'BENCHMARK' && (
+                <>
+                  {/* Boiler Details */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Boiler Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <p className="font-semibold">Make:</p>
+                        <p>{selectedCertificate.boiler_make}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Model:</p>
+                        <p>{selectedCertificate.boiler_model}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Serial Number:</p>
+                        <p>{selectedCertificate.boiler_serial_number}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Type:</p>
+                        <p>{selectedCertificate.boiler_type}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gas & Combustion Checks */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Gas & Combustion Checks</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm mb-4">
+                      <div>
+                        <p className="font-semibold">Gas Rate:</p>
+                        <p>{selectedCertificate.gas_rate} m³/hr</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Gas Inlet Pressure:</p>
+                        <p>{selectedCertificate.gas_inlet_pressure_max} mbar</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Burner Pressure:</p>
+                        <p>{selectedCertificate.burner_pressure_na ? 'N/A' : `${selectedCertificate.burner_gas_pressure} mbar`}</p>
+                      </div>
+                    </div>
+                    
+                    <h4 className="font-semibold mb-2">Combustion Analysis</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-slate-50 p-3 rounded mb-4">
+                      <div>
+                        <p className="font-semibold">CO Max:</p>
+                        <p>{selectedCertificate.co_max_rate} ppm</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO Min:</p>
+                        <p>{selectedCertificate.co_min_rate} ppm</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO₂ Max:</p>
+                        <p>{selectedCertificate.co2_max_rate}%</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO₂ Min:</p>
+                        <p>{selectedCertificate.co2_min_rate}%</p>
+                      </div>
+                    </div>
+
+                    <h4 className="font-semibold mb-2">CO/CO₂ Ratio</h4>
+                    <div className="grid grid-cols-2 gap-4 text-sm bg-blue-50 p-3 rounded mb-4">
+                      <div>
+                        <p className="font-semibold">At Max Rate:</p>
+                        <p>{selectedCertificate.co_co2_ratio_max}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">At Min Rate:</p>
+                        <p>{selectedCertificate.co_co2_ratio_min}</p>
+                      </div>
+                    </div>
+
+                    <h4 className="font-semibold mb-2">Safety Tests</h4>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.flue_integrity_checked ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.flue_integrity_checked ? '✓' : '✗'}
+                        </span>
+                        <span>Flue integrity check passed</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.gas_tightness_tested ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.gas_tightness_tested ? '✓' : '✗'}
+                        </span>
+                        <span>Gas tightness test passed</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.spillage_test_passed ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.spillage_test_passed ? '✓' : '✗'}
+                        </span>
+                        <span>Spillage test passed</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Water System & Controls */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Water System & Controls</h3>
+                    {selectedCertificate.cold_water_inlet_temp && (
+                      <div className="mb-4">
+                        <p className="font-semibold text-sm">Cold Water Inlet Temperature:</p>
+                        <p className="text-sm">{selectedCertificate.cold_water_inlet_temp}°C</p>
+                      </div>
+                    )}
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.hot_water_outlets_tested ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.hot_water_outlets_tested ? '✓' : '✗'}
+                        </span>
+                        <span>Hot water outlets tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.heating_controls_tested ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.heating_controls_tested ? '✓' : '✗'}
+                        </span>
+                        <span>Heating controls tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.hot_water_controls_tested ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.hot_water_controls_tested ? '✓' : '✗'}
+                        </span>
+                        <span>Hot water controls tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.interlock_tested ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.interlock_tested ? '✓' : '✗'}
+                        </span>
+                        <span>Interlock tested</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Condensate & Installation Compliance */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Installation Compliance</h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.condensate_installed_correctly ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.condensate_installed_correctly ? '✓' : '✗'}
+                        </span>
+                        <span>Condensate drain installed correctly</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.complies_with_manufacturer_instructions ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.complies_with_manufacturer_instructions ? '✓' : '✗'}
+                        </span>
+                        <span>Complies with manufacturer instructions</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.clearances_met ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.clearances_met ? '✓' : '✗'}
+                        </span>
+                        <span>All clearances met</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.gas_supply_purged ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.gas_supply_purged ? '✓' : '✗'}
+                        </span>
+                        <span>Gas supply purged</span>
+                      </div>
+                    </div>
+                    {(selectedCertificate.condensate_termination || selectedCertificate.condensate_disposal_method) && (
+                      <div className="grid grid-cols-2 gap-4 text-sm bg-slate-50 p-3 rounded">
+                        {selectedCertificate.condensate_termination && (
+                          <div>
+                            <p className="font-semibold">Condensate Termination:</p>
+                            <p>{selectedCertificate.condensate_termination}</p>
+                          </div>
+                        )}
+                        {selectedCertificate.condensate_disposal_method && (
+                          <div>
+                            <p className="font-semibold">Disposal Method:</p>
+                            <p>{selectedCertificate.condensate_disposal_method}</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Customer Handover & Building Regulations */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Customer Handover & Compliance</h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.operation_demonstrated ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.operation_demonstrated ? '✓' : '✗'}
+                        </span>
+                        <span>Operation demonstrated to customer</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.literature_provided ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.literature_provided ? '✓' : '✗'}
+                        </span>
+                        <span>Manufacturer's literature provided</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.benchmark_explained ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.benchmark_explained ? '✓' : '✗'}
+                        </span>
+                        <span>Benchmark checklist explained</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.building_control_notified ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.building_control_notified ? '✓' : '✗'}
+                        </span>
+                        <span>Building Control notified</span>
+                      </div>
+                    </div>
+                    {selectedCertificate.notification_method && (
+                      <div className="text-sm bg-slate-50 p-3 rounded">
+                        <p className="font-semibold">Notification Method:</p>
+                        <p>{selectedCertificate.notification_method}</p>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* Certificate Details for other non-CP12 certificates (CD11, CD10, TI133D) */}
+              {selectedCertificate.certificate_type !== 'CP12' && selectedCertificate.certificate_type !== 'BENCHMARK' && (
                 <div className="border-2 rounded-lg p-4">
                   <h3 className="font-bold text-lg mb-3">Certificate Details</h3>
                   <div className="grid grid-cols-2 gap-4 text-sm">

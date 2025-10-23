@@ -75,7 +75,7 @@ class BrecklandHeatingEdgeCaseTests:
         }
         
         success, result = self.make_request('POST', 'auth/login', invalid_credentials)
-        if not success and ("401" in str(result) or "Unauthorized" in str(result)):
+        if not success and ("Invalid email or password" in str(result) or "401" in str(result)):
             self.log_test("Invalid login credentials", True)
             return True
         else:

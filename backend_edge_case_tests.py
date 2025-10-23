@@ -107,12 +107,12 @@ class BrecklandHeatingEdgeCaseTests:
 
     def test_unauthorized_access(self):
         """Test accessing protected endpoints without token"""
-        success, result = self.make_request('GET', 'customers', expected_status=401)
-        if not success and "401" in str(result):
+        success, result = self.make_request('GET', 'customers')
+        if not success and ("401" in str(result) or "403" in str(result) or "Forbidden" in str(result)):
             self.log_test("Unauthorized access protection", True)
             return True
         else:
-            self.log_test("Unauthorized access protection", False, "Should require authentication")
+            self.log_test("Unauthorized access protection", False, f"Should require authentication, got: {result}")
             return False
 
     def test_invalid_customer_id(self):

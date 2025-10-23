@@ -309,8 +309,9 @@ const Certificates = () => {
                 <thead>
                   <tr>
                     <th>Certificate #</th>
-                    <th>Landlord/Customer</th>
-                    <th>Inspection Address</th>
+                    <th>Type</th>
+                    <th>Customer</th>
+                    <th>Address</th>
                     <th>Inspection Date</th>
                     <th>Next Due</th>
                     <th>Actions</th>
@@ -320,10 +321,15 @@ const Certificates = () => {
                   {filteredCertificates.map((cert) => (
                     <tr key={cert.id}>
                       <td className="font-semibold text-green-600">{cert.certificate_number}</td>
+                      <td>
+                        <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                          {cert.certificate_type}
+                        </span>
+                      </td>
                       <td>{cert.landlord_customer_name}</td>
                       <td className="max-w-xs truncate">{cert.inspection_address}</td>
                       <td>{new Date(cert.inspection_date).toLocaleDateString()}</td>
-                      <td>{new Date(cert.next_inspection_due).toLocaleDateString()}</td>
+                      <td>{cert.next_inspection_due ? new Date(cert.next_inspection_due).toLocaleDateString() : 'N/A'}</td>
                       <td>
                         <div className="flex gap-2">
                           <Button

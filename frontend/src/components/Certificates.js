@@ -71,7 +71,7 @@ const Certificates = () => {
 
   useEffect(() => {
     filterCertificates();
-  }, [searchTerm, certificates]);
+  }, [searchTerm, certificates, certificateTypeFilter]);
 
   const fetchData = async () => {
     try {

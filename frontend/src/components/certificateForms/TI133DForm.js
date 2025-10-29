@@ -118,7 +118,21 @@ const TI133DForm = () => {
       toast.success('TI/133D Risk Assessment created successfully!');
       navigate('/certificates');
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Failed to create assessment');
+      console.error('Certificate error:', error.response?.data);
+      
+      let errorMessage = 'Failed to create assessment';
+      if (error.response?.data?.detail) {
+        const detail = error.response.data.detail;
+        if (Array.isArray(detail)) {
+          errorMessage = detail.map(err => `${err.loc?.join(' > ')}: ${err.msg}`).join(', ');
+        } else if (typeof detail === 'string') {
+          errorMessage = detail;
+        } else {
+          errorMessage = 'Validation error. Please check all required fields.';
+        }
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

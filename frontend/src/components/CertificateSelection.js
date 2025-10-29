@@ -6,16 +6,6 @@ import { FileCheck, Flame, Wrench, Droplets, ShieldCheck, ArrowLeft } from 'luci
 const CertificateSelection = () => {
   const navigate = useNavigate();
 
-  const handleCertificateSelect = (route, type) => {
-    if (type === 'CP12') {
-      // CP12 uses the old dialog-based form in the main certificates page
-      navigate('/certificates');
-      // You may want to trigger the create dialog here
-    } else {
-      navigate(route);
-    }
-  };
-
   const certificateTypes = [
     {
       type: 'CP12',

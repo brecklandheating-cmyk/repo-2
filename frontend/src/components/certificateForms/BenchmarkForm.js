@@ -809,7 +809,7 @@ const BenchmarkForm = () => {
               disabled={loading}
               className="flex-1"
             >
-              {loading ? 'Creating...' : 'Create Benchmark Certificate'}
+              {loading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Certificate' : 'Create Benchmark Certificate')}
             </Button>
           </div>
         </form>

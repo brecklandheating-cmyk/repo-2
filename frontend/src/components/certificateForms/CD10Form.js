@@ -115,7 +115,16 @@ const CD10Form = () => {
     setLoading(true);
 
     try {
-      await axios.post(`${API}/certificates`, formData);
+      // Clean up empty date fields before sending
+      const cleanedData = { ...formData };
+      if (cleanedData.next_inspection_due === '') {
+        cleanedData.next_inspection_due = null;
+      }
+      if (cleanedData.installation_date === '') {
+        cleanedData.installation_date = null;
+      }
+      
+      await axios.post(`${API}/certificates`, cleanedData);
       toast.success('CD10 Certificate created successfully!');
       navigate('/certificates');
     } catch (error) {

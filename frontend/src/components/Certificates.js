@@ -1226,8 +1226,168 @@ const Certificates = () => {
                 </>
               )}
 
-              {/* Certificate Details for other non-CP12 certificates (CD11, CD10, TI133D) */}
-              {selectedCertificate.certificate_type !== 'CP12' && selectedCertificate.certificate_type !== 'BENCHMARK' && (
+              {/* CD11 - Oil Boiler Service Certificate Detailed View */}
+              {selectedCertificate.certificate_type === 'CD11' && (
+                <>
+                  {/* Appliance Details */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Appliance Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                      <div>
+                        <p className="font-semibold">Make & Model:</p>
+                        <p>{selectedCertificate.appliance_make_model || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Burner Type:</p>
+                        <p>{selectedCertificate.burner_type || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Flue Type:</p>
+                        <p>{selectedCertificate.flue_type || 'N/A'}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Service Checks */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Service Checks Performed</h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.burner_cleaned ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.burner_cleaned ? '✓' : '○'}
+                        </span>
+                        <span>Burner cleaned and adjusted</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.nozzle_replaced ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.nozzle_replaced ? '✓' : '○'}
+                        </span>
+                        <span>Nozzle replaced</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.filter_checked ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.filter_checked ? '✓' : '○'}
+                        </span>
+                        <span>Filter checked/replaced</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.controls_tested ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.controls_tested ? '✓' : '○'}
+                        </span>
+                        <span>Controls tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.safety_devices_tested ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.safety_devices_tested ? '✓' : '○'}
+                        </span>
+                        <span>Safety devices tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.flue_inspected ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.flue_inspected ? '✓' : '○'}
+                        </span>
+                        <span>Flue inspected and clean</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Combustion Test Results */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Combustion Test Results</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-slate-50 p-3 rounded mb-4">
+                      <div>
+                        <p className="font-semibold">CO:</p>
+                        <p>{selectedCertificate.co_ppm || 'N/A'} ppm</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO₂:</p>
+                        <p>{selectedCertificate.co2_percent || 'N/A'}%</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO/CO₂ Ratio:</p>
+                        <p>{selectedCertificate.co_co2_ratio || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Smoke Number:</p>
+                        <p>{selectedCertificate.smoke_number || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Flue Gas Temp:</p>
+                        <p>{selectedCertificate.flue_gas_temp || 'N/A'}°C</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Oil Flow Rate:</p>
+                        <p>{selectedCertificate.oil_flow_rate || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Pump Pressure:</p>
+                        <p>{selectedCertificate.pump_pressure || 'N/A'} bar</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Excess Air:</p>
+                        <p>{selectedCertificate.excess_air_percent || 'N/A'}%</p>
+                      </div>
+                    </div>
+                    <h4 className="font-semibold mb-2">Nozzle Details</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-blue-50 p-3 rounded mb-4">
+                      <div>
+                        <p className="font-semibold">Size:</p>
+                        <p>{selectedCertificate.nozzle_size || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Angle:</p>
+                        <p>{selectedCertificate.nozzle_angle || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Pattern:</p>
+                        <p>{selectedCertificate.nozzle_pattern || 'N/A'}</p>
+                      </div>
+                    </div>
+                    <h4 className="font-semibold mb-2">Efficiency</h4>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-semibold">Net Efficiency:</p>
+                        <p>{selectedCertificate.net_efficiency || 'N/A'}%</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Gross Efficiency:</p>
+                        <p>{selectedCertificate.gross_efficiency || 'N/A'}%</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Work Done */}
+                  {(selectedCertificate.oil_service_work || selectedCertificate.parts_replaced || selectedCertificate.notes) && (
+                    <div className="border-2 rounded-lg p-4">
+                      <h3 className="font-bold text-lg mb-3">Work Done & Comments</h3>
+                      {selectedCertificate.oil_service_work && (
+                        <div className="mb-3">
+                          <p className="font-semibold text-sm">Service Work:</p>
+                          <p className="text-sm whitespace-pre-wrap">{selectedCertificate.oil_service_work}</p>
+                        </div>
+                      )}
+                      {selectedCertificate.parts_replaced && (
+                        <div className="mb-3">
+                          <p className="font-semibold text-sm">Parts Replaced:</p>
+                          <p className="text-sm whitespace-pre-wrap">{selectedCertificate.parts_replaced}</p>
+                        </div>
+                      )}
+                      {selectedCertificate.notes && (
+                        <div>
+                          <p className="font-semibold text-sm">Additional Notes:</p>
+                          <p className="text-sm whitespace-pre-wrap">{selectedCertificate.notes}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* CD10 - Oil Installation Certificate - Add comprehensive view later */}
+              {/* TI133D - Tank Risk Assessment - Add comprehensive view later */}
+
+              {/* Generic view for CD10 and TI133D (temporary) */}
+              {(selectedCertificate.certificate_type === 'CD10' || selectedCertificate.certificate_type === 'TI133D') && selectedCertificate.certificate_type !== 'CP12' && selectedCertificate.certificate_type !== 'BENCHMARK' && selectedCertificate.certificate_type !== 'CD11' && (
                 <div className="border-2 rounded-lg p-4">
                   <h3 className="font-bold text-lg mb-3">Certificate Details</h3>
                   <div className="grid grid-cols-2 gap-4 text-sm">

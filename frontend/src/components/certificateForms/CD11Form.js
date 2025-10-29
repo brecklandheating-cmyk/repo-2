@@ -115,7 +115,13 @@ const CD11Form = () => {
     setLoading(true);
 
     try {
-      await axios.post(`${API}/certificates`, formData);
+      // Clean up empty date fields before sending
+      const cleanedData = { ...formData };
+      if (cleanedData.next_inspection_due === '') {
+        cleanedData.next_inspection_due = null;
+      }
+      
+      await axios.post(`${API}/certificates`, cleanedData);
       toast.success('CD11 Certificate created successfully!');
       navigate('/certificates');
     } catch (error) {

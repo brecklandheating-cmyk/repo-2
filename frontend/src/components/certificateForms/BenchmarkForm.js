@@ -92,7 +92,21 @@ const BenchmarkForm = () => {
 
   useEffect(() => {
     fetchSettings();
-  }, []);
+    if (isEditMode) {
+      fetchCertificate();
+    }
+  }, [id]);
+
+  const fetchCertificate = async () => {
+    try {
+      const response = await axios.get(`${API}/certificates/${id}`);
+      setFormData(response.data);
+      toast.success('Certificate loaded');
+    } catch (error) {
+      toast.error('Failed to load certificate');
+      navigate('/certificates');
+    }
+  };
 
   const fetchSettings = async () => {
     try {

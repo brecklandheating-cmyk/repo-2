@@ -18,6 +18,7 @@ import CD11Form from './components/certificateForms/CD11Form';
 import CD10Form from './components/certificateForms/CD10Form';
 import TI133DForm from './components/certificateForms/TI133DForm';
 import BenchmarkForm from './components/certificateForms/BenchmarkForm';
+import CP12Form from './components/certificateForms/CP12Form';
 import Settings from './components/Settings';
 import Layout from './components/Layout';
 

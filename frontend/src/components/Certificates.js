@@ -413,17 +413,27 @@ const Certificates = () => {
                           >
                             <Eye className="w-4 h-4" />
                           </Button>
-                          {cert.certificate_type === 'CP12' && (
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleEdit(cert)}
-                              data-testid={`edit-certificate-${cert.id}`}
-                              className="hover:bg-amber-50 hover:text-amber-600 hover:border-amber-300"
-                            >
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                          )}
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              if (cert.certificate_type === 'CP12') {
+                                handleEdit(cert);
+                              } else if (cert.certificate_type === 'BENCHMARK') {
+                                navigate(`/certificates/edit/benchmark/${cert.id}`);
+                              } else if (cert.certificate_type === 'CD11') {
+                                navigate(`/certificates/edit/cd11/${cert.id}`);
+                              } else if (cert.certificate_type === 'CD10') {
+                                navigate(`/certificates/edit/cd10/${cert.id}`);
+                              } else if (cert.certificate_type === 'TI133D') {
+                                navigate(`/certificates/edit/ti133d/${cert.id}`);
+                              }
+                            }}
+                            data-testid={`edit-certificate-${cert.id}`}
+                            className="hover:bg-amber-50 hover:text-amber-600 hover:border-amber-300"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Button>
                           <Button
                             size="sm"
                             variant="outline"

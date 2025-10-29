@@ -413,15 +413,17 @@ const Certificates = () => {
                           >
                             <Eye className="w-4 h-4" />
                           </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => handleEdit(cert)}
-                            data-testid={`edit-certificate-${cert.id}`}
-                            className="hover:bg-amber-50 hover:text-amber-600 hover:border-amber-300"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
+                          {cert.certificate_type === 'CP12' && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleEdit(cert)}
+                              data-testid={`edit-certificate-${cert.id}`}
+                              className="hover:bg-amber-50 hover:text-amber-600 hover:border-amber-300"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                          )}
                           <Button
                             size="sm"
                             variant="outline"

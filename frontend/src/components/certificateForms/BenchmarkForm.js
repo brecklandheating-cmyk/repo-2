@@ -150,11 +150,17 @@ const BenchmarkForm = () => {
     setLoading(true);
 
     try {
+      // Clean up empty date fields before sending
+      const cleanedData = { ...formData };
+      if (cleanedData.next_inspection_due === '') {
+        cleanedData.next_inspection_due = null;
+      }
+      
       if (isEditMode) {
-        await axios.put(`${API}/certificates/${id}`, formData);
+        await axios.put(`${API}/certificates/${id}`, cleanedData);
         toast.success('Benchmark Certificate updated successfully!');
       } else {
-        await axios.post(`${API}/certificates`, formData);
+        await axios.post(`${API}/certificates`, cleanedData);
         toast.success('Benchmark Certificate created successfully!');
       }
       navigate('/certificates');

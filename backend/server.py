@@ -523,6 +523,7 @@ async def get_next_certificate_number(cert_type: str) -> str:
     # Map certificate types to prefixes
     prefix_map = {
         "CP12": "CP12",
+        "BENCHMARK": "BENCHMARK",
         "CD11": "CD11",
         "GWN": "GWN",
         "CD10": "CD10",

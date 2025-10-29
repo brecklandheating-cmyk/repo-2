@@ -150,11 +150,16 @@ const BenchmarkForm = () => {
     setLoading(true);
 
     try {
-      await axios.post(`${API}/certificates`, formData);
-      toast.success('Benchmark Certificate created successfully!');
+      if (isEditMode) {
+        await axios.put(`${API}/certificates/${id}`, formData);
+        toast.success('Benchmark Certificate updated successfully!');
+      } else {
+        await axios.post(`${API}/certificates`, formData);
+        toast.success('Benchmark Certificate created successfully!');
+      }
       navigate('/certificates');
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Failed to create certificate');
+      toast.error(error.response?.data?.detail || `Failed to ${isEditMode ? 'update' : 'create'} certificate`);
     } finally {
       setLoading(false);
     }

@@ -125,6 +125,10 @@ function App() {
                     <Route path="/certificates/new/cd11" element={<CD11Form />} />
                     <Route path="/certificates/new/cd10" element={<CD10Form />} />
                     <Route path="/certificates/new/ti133d" element={<TI133DForm />} />
+                    <Route path="/certificates/edit/benchmark/:id" element={<BenchmarkForm />} />
+                    <Route path="/certificates/edit/cd11/:id" element={<CD11Form />} />
+                    <Route path="/certificates/edit/cd10/:id" element={<CD10Form />} />
+                    <Route path="/certificates/edit/ti133d/:id" element={<TI133DForm />} />
                     <Route path="/settings" element={<Settings user={user} />} />
                   </Routes>
                 </Layout>

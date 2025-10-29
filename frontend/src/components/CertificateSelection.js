@@ -77,7 +77,7 @@ const CertificateSelection = () => {
               <Card
                 key={cert.type}
                 className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-blue-400"
-                onClick={() => handleCertificateSelect(cert.route, cert.type)}
+                onClick={() => navigate(cert.route)}
               >
                 <CardHeader className="pb-4">
                   <div className={`w-14 h-14 rounded-xl bg-${cert.color}-100 flex items-center justify-center mb-4`}>

@@ -89,14 +89,7 @@ const CertificateSelection = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button 
-                    className="w-full" 
-                    variant="outline"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCertificateSelect(cert.route, cert.type);
-                    }}
-                  >
+                  <Button className="w-full" variant="outline">
                     <FileCheck className="w-4 h-4 mr-2" />
                     Create {cert.type}
                   </Button>

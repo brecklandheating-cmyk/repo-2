@@ -84,8 +84,10 @@ const SignatureInput = ({ value, onChange }) => {
   
   const clearSignature = () => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
     setHasSignature(false);
     setUploadedImage(null);
     onChange(null);

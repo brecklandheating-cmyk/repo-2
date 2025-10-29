@@ -1383,64 +1383,321 @@ const Certificates = () => {
                 </>
               )}
 
-              {/* CD10 - Oil Installation Certificate - Add comprehensive view later */}
-              {/* TI133D - Tank Risk Assessment - Add comprehensive view later */}
-
-              {/* Generic view for CD10 and TI133D (temporary) */}
-              {(selectedCertificate.certificate_type === 'CD10' || selectedCertificate.certificate_type === 'TI133D') && selectedCertificate.certificate_type !== 'CP12' && selectedCertificate.certificate_type !== 'BENCHMARK' && selectedCertificate.certificate_type !== 'CD11' && (
-                <div className="border-2 rounded-lg p-4">
-                  <h3 className="font-bold text-lg mb-3">Certificate Details</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    {selectedCertificate.boiler_make && (
+              {/* CD10 - Oil Installation Certificate Detailed View */}
+              {selectedCertificate.certificate_type === 'CD10' && (
+                <>
+                  {/* Installation Details */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Installation Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                       <div>
-                        <p className="font-semibold">Boiler Make:</p>
-                        <p>{selectedCertificate.boiler_make}</p>
+                        <p className="font-semibold">Installation Date:</p>
+                        <p>{selectedCertificate.installation_date ? new Date(selectedCertificate.installation_date).toLocaleDateString() : 'N/A'}</p>
                       </div>
-                    )}
-                    {selectedCertificate.boiler_model && (
                       <div>
-                        <p className="font-semibold">Boiler Model:</p>
-                        <p>{selectedCertificate.boiler_model}</p>
+                        <p className="font-semibold">Work Type:</p>
+                        <p>{selectedCertificate.work_type || 'N/A'}</p>
                       </div>
-                    )}
-                    {selectedCertificate.boiler_serial_number && (
+                      <div>
+                        <p className="font-semibold">Appliance Make & Model:</p>
+                        <p>{selectedCertificate.appliance_make_model || 'N/A'}</p>
+                      </div>
                       <div>
                         <p className="font-semibold">Serial Number:</p>
-                        <p>{selectedCertificate.boiler_serial_number}</p>
+                        <p>{selectedCertificate.appliance_serial_number || 'N/A'}</p>
                       </div>
-                    )}
-                    {selectedCertificate.boiler_type && (
                       <div>
-                        <p className="font-semibold">Boiler Type:</p>
-                        <p>{selectedCertificate.boiler_type}</p>
+                        <p className="font-semibold">Output Rating:</p>
+                        <p>{selectedCertificate.output_rating || 'N/A'} kW</p>
                       </div>
-                    )}
-                    {selectedCertificate.appliance_make_model && (
                       <div>
-                        <p className="font-semibold">Appliance:</p>
-                        <p>{selectedCertificate.appliance_make_model}</p>
+                        <p className="font-semibold">Fuel Type:</p>
+                        <p>{selectedCertificate.fuel_type || 'N/A'}</p>
                       </div>
-                    )}
-                    {selectedCertificate.tank_type && (
+                    </div>
+                  </div>
+
+                  {/* Tank & System Details */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Oil Tank & System Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-slate-50 p-3 rounded">
                       <div>
                         <p className="font-semibold">Tank Type:</p>
-                        <p>{selectedCertificate.tank_type}</p>
+                        <p>{selectedCertificate.tank_type || 'N/A'}</p>
                       </div>
-                    )}
-                    {selectedCertificate.tank_capacity && (
                       <div>
-                        <p className="font-semibold">Tank Capacity:</p>
-                        <p>{selectedCertificate.tank_capacity} litres</p>
+                        <p className="font-semibold">Capacity:</p>
+                        <p>{selectedCertificate.tank_capacity || 'N/A'} litres</p>
                       </div>
-                    )}
-                    {selectedCertificate.notes && (
-                      <div className="col-span-2">
-                        <p className="font-semibold">Notes:</p>
-                        <p className="whitespace-pre-wrap">{selectedCertificate.notes}</p>
+                      <div>
+                        <p className="font-semibold">Material:</p>
+                        <p>{selectedCertificate.tank_material || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Base/Support:</p>
+                        <p>{selectedCertificate.base_support_type || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Pipework Material:</p>
+                        <p>{selectedCertificate.pipework_material || 'N/A'}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* System Checks & Tests */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">System Checks & Tests</h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.fire_valve_fitted ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.fire_valve_fitted ? '✓' : '○'}
+                        </span>
+                        <span>Fire valve fitted and tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.tank_pressure_tested ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.tank_pressure_tested ? '✓' : '○'}
+                        </span>
+                        <span>Tank pressure tested</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.building_control_notified ? 'text-green-600 font-bold' : 'text-slate-400'}>
+                          {selectedCertificate.building_control_notified ? '✓' : '○'}
+                        </span>
+                        <span>Building Control notified</span>
+                      </div>
+                    </div>
+                    {selectedCertificate.pressure_test_result && (
+                      <div className="bg-blue-50 p-3 rounded">
+                        <p className="font-semibold text-sm">Pressure Test Result:</p>
+                        <p className="text-sm">{selectedCertificate.pressure_test_result} bar</p>
                       </div>
                     )}
                   </div>
-                </div>
+
+                  {/* Commissioning Test Results */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Commissioning Test Results</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm bg-slate-50 p-3 rounded">
+                      <div>
+                        <p className="font-semibold">CO:</p>
+                        <p>{selectedCertificate.co_ppm || 'N/A'} ppm</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">CO₂:</p>
+                        <p>{selectedCertificate.co2_percent || 'N/A'}%</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Smoke Number:</p>
+                        <p>{selectedCertificate.smoke_number || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Flue Gas Temp:</p>
+                        <p>{selectedCertificate.flue_gas_temp || 'N/A'}°C</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Net Efficiency:</p>
+                        <p>{selectedCertificate.net_efficiency || 'N/A'}%</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Gross Efficiency:</p>
+                        <p>{selectedCertificate.gross_efficiency || 'N/A'}%</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Compliance */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Compliance Declaration</h3>
+                    <div className="flex items-center gap-2 p-4 bg-blue-50 rounded">
+                      <span className={selectedCertificate.complies_with_standards ? 'text-green-600 font-bold text-xl' : 'text-red-600 font-bold text-xl'}>
+                        {selectedCertificate.complies_with_standards ? '✓' : '✗'}
+                      </span>
+                      <span className="font-semibold">Installation complies with OFTEC standards and Building Regulations</span>
+                    </div>
+                    {selectedCertificate.notes && (
+                      <div className="mt-4">
+                        <p className="font-semibold text-sm">Additional Comments:</p>
+                        <p className="text-sm whitespace-pre-wrap">{selectedCertificate.notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* TI/133D - Tank Risk Assessment Detailed View */}
+              {selectedCertificate.certificate_type === 'TI133D' && (
+                <>
+                  {/* Tank Details */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Oil Tank Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-slate-50 p-3 rounded">
+                      <div>
+                        <p className="font-semibold">Construction:</p>
+                        <p>{selectedCertificate.tank_construction || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Type:</p>
+                        <p>{selectedCertificate.tank_type || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Capacity:</p>
+                        <p>{selectedCertificate.tank_capacity || 'N/A'} litres</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Material:</p>
+                        <p>{selectedCertificate.tank_material || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Age:</p>
+                        <p>{selectedCertificate.tank_age || 'N/A'} years</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Location:</p>
+                        <p>{selectedCertificate.tank_location || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Distance to Building:</p>
+                        <p>{selectedCertificate.distance_to_building || 'N/A'} m</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Safety Assessment Checklist */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Safety Assessment Checklist</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.tank_condition_good ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.tank_condition_good ? '✓' : '✗'}
+                        </span>
+                        <span>Tank in good condition</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.tank_positioned_correctly ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.tank_positioned_correctly ? '✓' : '✗'}
+                        </span>
+                        <span>Tank positioned on stable, level base</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.adequate_ventilation ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.adequate_ventilation ? '✓' : '✗'}
+                        </span>
+                        <span>Adequate ventilation around tank</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.fire_valve_present ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.fire_valve_present ? '✓' : '✗'}
+                        </span>
+                        <span>Fire valve fitted and operational</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.distance_adequate ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.distance_adequate ? '✓' : '✗'}
+                        </span>
+                        <span>Distance to building meets regulations</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.secondary_containment_adequate ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.secondary_containment_adequate ? '✓' : '✗'}
+                        </span>
+                        <span>Secondary containment adequate</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.away_from_ignition_sources ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.away_from_ignition_sources ? '✓' : '✗'}
+                        </span>
+                        <span>Tank away from ignition sources</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.away_from_drains ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.away_from_drains ? '✓' : '✗'}
+                        </span>
+                        <span>Tank away from drains/watercourses</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.pipework_secure ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.pipework_secure ? '✓' : '✗'}
+                        </span>
+                        <span>All pipework secure</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.no_visible_leaks ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.no_visible_leaks ? '✓' : '✗'}
+                        </span>
+                        <span>No visible oil leaks</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.vent_pipe_correct ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.vent_pipe_correct ? '✓' : '✗'}
+                        </span>
+                        <span>Vent pipe correctly installed</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={selectedCertificate.fill_line_correct ? 'text-green-600 font-bold' : 'text-red-600 font-bold'}>
+                          {selectedCertificate.fill_line_correct ? '✓' : '✗'}
+                        </span>
+                        <span>Fill line correctly positioned</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Risk Assessment Summary */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Risk Assessment Summary</h3>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="bg-slate-50 p-4 rounded">
+                        <p className="font-semibold text-sm mb-2">Spillage Risk Level:</p>
+                        <p className={`text-lg font-bold ${
+                          selectedCertificate.spillage_risk_level === 'High' ? 'text-red-600' :
+                          selectedCertificate.spillage_risk_level === 'Medium' ? 'text-orange-600' :
+                          'text-green-600'
+                        }`}>
+                          {selectedCertificate.spillage_risk_level || 'N/A'}
+                        </p>
+                      </div>
+                      <div className="bg-slate-50 p-4 rounded">
+                        <p className="font-semibold text-sm mb-2">Fire Risk Level:</p>
+                        <p className={`text-lg font-bold ${
+                          selectedCertificate.fire_risk_level === 'High' ? 'text-red-600' :
+                          selectedCertificate.fire_risk_level === 'Medium' ? 'text-orange-600' :
+                          'text-green-600'
+                        }`}>
+                          {selectedCertificate.fire_risk_level || 'N/A'}
+                        </p>
+                      </div>
+                    </div>
+                    {selectedCertificate.environmental_hazards && (
+                      <div className="bg-yellow-50 p-3 rounded mb-4">
+                        <p className="font-semibold text-sm">Environmental Hazards:</p>
+                        <p className="text-sm whitespace-pre-wrap">{selectedCertificate.environmental_hazards}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Remedial Actions */}
+                  <div className="border-2 rounded-lg p-4">
+                    <h3 className="font-bold text-lg mb-3">Remedial Actions Required</h3>
+                    {selectedCertificate.urgent_attention_needed && (
+                      <div className="bg-red-50 border-2 border-red-300 p-4 rounded mb-4">
+                        <p className="font-bold text-red-700 flex items-center gap-2">
+                          <span className="text-xl">⚠️</span>
+                          URGENT ATTENTION REQUIRED
+                        </p>
+                      </div>
+                    )}
+                    <div className="bg-slate-50 p-4 rounded">
+                      <p className="font-semibold text-sm mb-2">Actions Required:</p>
+                      <p className="text-sm whitespace-pre-wrap">{selectedCertificate.actions_required || 'N/A'}</p>
+                    </div>
+                    {selectedCertificate.notes && (
+                      <div className="mt-4 bg-blue-50 p-4 rounded">
+                        <p className="font-semibold text-sm mb-2">Additional Notes:</p>
+                        <p className="text-sm whitespace-pre-wrap">{selectedCertificate.notes}</p>
+                      </div>
+                    )}
+                  </div>
+                </>
               )}
 
               {/* Bottom Section */}

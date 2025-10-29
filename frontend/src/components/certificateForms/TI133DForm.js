@@ -114,7 +114,13 @@ const TI133DForm = () => {
     setLoading(true);
 
     try {
-      await axios.post(`${API}/certificates`, formData);
+      // Clean up empty date fields before sending
+      const cleanedData = { ...formData };
+      if (cleanedData.next_inspection_due === '') {
+        cleanedData.next_inspection_due = null;
+      }
+      
+      await axios.post(`${API}/certificates`, cleanedData);
       toast.success('TI/133D Risk Assessment created successfully!');
       navigate('/certificates');
     } catch (error) {

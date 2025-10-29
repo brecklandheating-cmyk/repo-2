@@ -56,11 +56,17 @@ const Login = ({ onLogin }) => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-fade-in">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
-            <Building2 className="w-9 h-9 text-white" />
-          </div>
+          {settings?.logo ? (
+            <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
+              <img src={settings.logo} alt="Company Logo" className="w-full h-full object-contain rounded-lg" />
+            </div>
+          ) : (
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
+              <Building2 className="w-9 h-9 text-white" />
+            </div>
+          )}
           <h1 className="text-4xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'Space Grotesk' }}>
-            Breckland Heating
+            {settings?.company_name || 'Breckland Heating'}
           </h1>
           <p className="text-slate-600">Gas & Oil Domestic Servicing</p>
         </div>
